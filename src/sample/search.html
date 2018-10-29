@@ -4,6 +4,7 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <title>Google Maps</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -91,6 +92,7 @@
 </head>
 <body>
 <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+<p id="status" hidden></p>
 <div id="map"></div>
 <script>
       // This example adds a search box to a map, using the Google Place Autocomplete
@@ -100,6 +102,8 @@
       // This example requires the Places library. Include the libraries=places
       // parameter when you first load the API. For example:
       // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+      var current = 'place';
 
       function initAutocomplete() {
         
@@ -125,6 +129,7 @@
         var markers = [];
         // Listen for the event fired when the user selects a prediction and retrieve
         // more details for that place.
+
         searchBox.addListener('places_changed', function() {
           var places = searchBox.getPlaces();
 
@@ -141,6 +146,13 @@
           // For each place, get the icon, name and location.
           var bounds = new google.maps.LatLngBounds();
           places.forEach(function(place) {
+            // current = JSON.stringify(place);
+            try {
+              document.getElementById("status").innerHTML = JSON.stringify(place);
+            }
+            catch (err) {
+              document.getElementById("status").innerHTML = err.message;
+            }
             if (!place.geometry) {
               console.log("Returned place contains no geometry");
               return;
@@ -174,10 +186,8 @@
               var longitude = event.latLng.lng();
               
               var pos = (latitude + ', ' + longitude )
-              console.log( pos );
-              
-
-              
+              java.log( pos );
+                            
             }); 
 
 
@@ -185,10 +195,11 @@
           });
           map.fitBounds(bounds);
           document.geocoder = new google.maps.Geocoder();
-          document.map = new google.maps.Map(document.getElementById("map_canvas"),myOptions);
+          document.map = new google.maps.Map(document.getElementById("map_canvas"));
           
           
         });
+        
       }
 
     </script>
@@ -197,5 +208,8 @@
 </body>
 <body onload="initialize()">
   <div id="map_canvas" style="width:100%; height:100%"></div>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>
 </html>

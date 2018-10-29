@@ -24,15 +24,11 @@ import javafx.scene.web.WebEvent;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
-
-
 public class Main extends Application {
 
     private Scene scene;
     //MyBrowser myBrowser;
     private WebView htmlGmap;
-
-
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -41,11 +37,6 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
-
-
-
-
-
 
     public static void main(String[] args) {
         launch(args);

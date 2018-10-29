@@ -8,6 +8,10 @@ import javafx.scene.web.WebView;
 import javafx.stage.Window;
 import javafx.stage.Stage;
 import java.net.URL;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import javafx.concurrent.Worker;
 import netscape.javascript.JSObject;
 import javafx.concurrent.Worker.State;
@@ -31,6 +35,8 @@ public class Controller {
             System.out.println(text);
         }
     }
+    
+    
 
     @FXML
     private void initialize(){
@@ -39,19 +45,27 @@ public class Controller {
             @Override
             public void changed(ObservableValue<? extends State> observableValue, State oldState, State newState) {
                 if (newState == State.SUCCEEDED) {
+                	/*
                     JSObject window = (JSObject) webEngine.executeScript("window");
                     JavaBridge bridge = new JavaBridge();
-                    /* The two objects are named using the setMember() method. */
-                    window.setMember("java", bridge);
+                    window.setMember("java", bridge);  
+                    */
+                    /*
                     webEngine.executeScript("console.log = function(message)\n" +
                             "{\n" +
                             "    java.log(message);\n" +
                             "};");
+                    
+                    webEngine.executeScript("alert(\"loll\")");
+                    */
+                	
+                	JSObject jdoc = (JSObject) webEngine.getDocument();
+                	Object str = jdoc.getMember("current");
+                	System.out.println(str.toString());
+                	
                 }
             }
         });
-
-
 
 
         URL urlGoogleMaps = getClass().getResource("search.html");
@@ -63,9 +77,16 @@ public class Controller {
 
     @FXML
     protected void handleButton1Action(ActionEvent event){
-        list.getItems().add("Please choose spots from map");
-
-
+    	WebEngine webEngine = htmlGmap.getEngine();
+    	String val = (String) webEngine.executeScript("document.getElementById('status').innerHTML");
+    	System.out.println(val);
+    	
+    	if (!val.equals("")) {
+        	list.getItems().add(val);
+    	}
+    	else {
+            System.out.println("Please choose spots from map");
+    	}
     }
 
 

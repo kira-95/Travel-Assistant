@@ -12,7 +12,7 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <Button fx:id="button1" mnemonicParsing="false" onAction="#handleButton1Action" text="plan a trip" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="15.0" />
+                  <Button fx:id="button1" mnemonicParsing="false" onAction="#handleButton1Action" text="Add Location" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="15.0" />
                   <ListView fx:id="list" AnchorPane.topAnchor="200.0" />
                </children>
             </AnchorPane>
