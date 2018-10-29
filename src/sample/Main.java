@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import netscape.javascript.JSObject;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -28,34 +29,22 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     private Scene scene;
-    MyBrowser myBrowser;
+    //MyBrowser myBrowser;
+    private WebView htmlGmap;
+
+
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        //Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("TravelAssistant");
-        myBrowser = new MyBrowser();
-        primaryStage.setScene(new Scene(myBrowser, 640, 480));
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
 
-    class MyBrowser extends Region{
 
-        HBox toolbar;
 
-        WebView webView = new WebView();
-        WebEngine webEngine = webView.getEngine();
 
-        public MyBrowser(){
-
-            final URL urlGoogleMaps = getClass().getResource("search.html");
-            webEngine.load(urlGoogleMaps.toExternalForm());
-
-            getChildren().add(webView);
-
-        }
-
-    }
 
 
     public static void main(String[] args) {

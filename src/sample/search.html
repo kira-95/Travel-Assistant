@@ -3,7 +3,7 @@
 <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <title>Places Search Box</title>
+    <title>Google Maps</title>
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -64,10 +64,11 @@
       #pac-input {
         background-color: #fff;
         font-family: Roboto;
-        font-size: 15px;
+        font-size: 25px;
         font-weight: 300;
         margin-left: 10px;
-        padding: 0 11px 0 13px;
+        margin-top: 10px;
+        padding: 0 11px 0 15px;
         text-overflow: ellipsis;
         width: 400px;
       }
@@ -101,11 +102,13 @@
       // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
       function initAutocomplete() {
+        
         var map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 40.8075, lng: -73.9626},
           zoom: 13,
           mapTypeId: 'roadmap'
         });
+
 
         // Create the search box and link it to the UI element.
         var input = document.getElementById('pac-input');
@@ -116,6 +119,8 @@
         map.addListener('bounds_changed', function() {
           searchBox.setBounds(map.getBounds());
         });
+
+
 
         var markers = [];
         // Listen for the event fired when the user selects a prediction and retrieve
@@ -149,7 +154,7 @@
             };
 
             // Create a marker for each place.
-            markers.push(new google.maps.Marker({
+            markers.push(marker = new google.maps.Marker({
               map: map,
               icon: icon,
               title: place.name,
@@ -162,13 +167,35 @@
             } else {
               bounds.extend(place.geometry.location);
             }
+
+            //Add listener
+            google.maps.event.addListener(marker, "click", function (event) {
+              var latitude = event.latLng.lat();
+              var longitude = event.latLng.lng();
+              
+              var pos = (latitude + ', ' + longitude )
+              console.log( pos );
+              
+
+              
+            }); 
+
+
+
           });
           map.fitBounds(bounds);
+          document.geocoder = new google.maps.Geocoder();
+          document.map = new google.maps.Map(document.getElementById("map_canvas"),myOptions);
+          
+          
         });
       }
 
     </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=API&libraries=places&callback=initAutocomplete"
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-koIUFG8mHaGIZdeRC1W_xFjCaKgIqnY&libraries=places&callback=initAutocomplete"
         async defer></script>
+</body>
+<body onload="initialize()">
+  <div id="map_canvas" style="width:100%; height:100%"></div>
 </body>
 </html>
