@@ -1,9 +1,3 @@
-<<<<<<< HEAD:src/sample/Controller.java
-package sample;
-=======
-package src;
-import javafx.application.Platform;
->>>>>>> efefb329722dc7c4d24f02a24b5c2e695ccce56f:src/Controller.java
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
