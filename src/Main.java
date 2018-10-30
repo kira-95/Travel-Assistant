@@ -1,4 +1,4 @@
-package sample;
+package src;
 
 import java.net.URL;
 import javafx.application.Application;
@@ -32,7 +32,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("layout.fxml"));
         primaryStage.setTitle("TravelAssistant");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();

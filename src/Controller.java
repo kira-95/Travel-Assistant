@@ -1,4 +1,4 @@
-package sample;
+package src;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -45,23 +45,10 @@ public class Controller {
             @Override
             public void changed(ObservableValue<? extends State> observableValue, State oldState, State newState) {
                 if (newState == State.SUCCEEDED) {
-                	/*
-                    JSObject window = (JSObject) webEngine.executeScript("window");
-                    JavaBridge bridge = new JavaBridge();
-                    window.setMember("java", bridge);  
-                    */
-                    /*
-                    webEngine.executeScript("console.log = function(message)\n" +
-                            "{\n" +
-                            "    java.log(message);\n" +
-                            "};");
-                    
-                    webEngine.executeScript("alert(\"loll\")");
-                    */
                 	
                 	JSObject jdoc = (JSObject) webEngine.getDocument();
-                	Object str = jdoc.getMember("current");
-                	System.out.println(str.toString());
+                	// Object str = jdoc.getMember("current");
+                	// System.out.println(str.toString());
                 	
                 }
             }
