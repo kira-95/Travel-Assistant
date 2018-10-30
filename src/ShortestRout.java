@@ -1,47 +1,46 @@
-import java.util.ArrayList;
+import java.util.*;
 import java.util.Stack;
 
 /**
- * 
- */
-
-/**
- * @author genghaoran
+ * @author Haoran Geng, Xijie Guo
  * 
  * Each time finding the min path along the nodes
  * store the nodes into the stack
  *
  */
 public class ShortestRout {
-	public static ArrayList<String> FindShortest(SpotsCollection Spots){
-		
-		ArrayList<String> result = new ArrayList<String>();
-		Stack<String>  names = new Stack<String>();
-		int numberofNodes = Spots.size;
-		int[] visited = new int[numberofNodes + 1];
+
+	public static List<String> findShortest(SpotsCollection spots) {
+		int [][] distances = spots.getDistances();
+		List<String> names = spots.getNames();
+		int numberOfNodes = spots.getSize();
+
+		List<String> result = new ArrayList<String>();
+		Stack<String> stack = new Stack<String>();
+		int[] visited = new int[numberOfNodes + 1];
 		visited[0]= 1;
-		names.push(Spots.names.get(0));
-		int element,dst = 0,i;
-		int min = Integer.MAX_VALUE;
+		int element, dst = 0, i = 0, min = Integer.MAX_VALUE;
 		boolean minFlag = false;
-		result.add(Spots.names.get(0));
-		
-		for(int k = 1; k < numberofNodes-1;k++) {
-			for(int j = 1;j<=numberofNodes-1;j++) {
-				if(Spots.distances[k][j]==1 && Spots.distances[j][k]==0) {
-					Spots.distances[j][k]=1;
+
+		stack.push(names.get(0));
+		result.add(names.get(0));
+
+		for(int k = 1; k < numberOfNodes - 1; k++) {
+			for(int j = 1; j <= numberOfNodes - 1; j++) {
+				if(distances[k][j] == 1 && distances[j][k] == 0) {
+					distances[j][k] = 1;
 				}
 			}
 		}
 		
-		while(!names.isEmpty()) {
-			element = Spots.names.indexOf(names.peek());
+		while(!stack.isEmpty()) {
+			element = names.indexOf(stack.peek());
 			i = 0;
 			min = Integer.MAX_VALUE;
-			while(i < numberofNodes) {
-				if(Spots.distances[element][i] > 1 && visited[i]==0) {
-					if(min > Spots.distances[element][i]) {
-						min  = Spots.distances[element][i];
+			while(i < numberOfNodes) {
+				if(distances[element][i] > 1 && visited[i] == 0) {
+					if(min > distances[element][i]) {
+						min  = distances[element][i];
 						dst = i;
 						minFlag = true;
 					}
@@ -50,14 +49,13 @@ public class ShortestRout {
 			}
 			if(minFlag) {
 				visited[dst] = 1;
-				names.push(Spots.names.get(dst));
-				result.add(Spots.names.get(dst));
+				stack.push(names.get(dst));
+				result.add(names.get(dst));
 				minFlag = false;
 				continue;
 			}
-			names.pop();
+			stack.pop();
 		}
-		
 
 		return result;
 	}

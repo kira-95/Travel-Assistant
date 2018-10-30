@@ -1,18 +1,10 @@
 package sample;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
-import javafx.stage.Window;
-import javafx.stage.Stage;
 import java.net.URL;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-
-import javafx.concurrent.Worker;
 import netscape.javascript.JSObject;
 import javafx.concurrent.Worker.State;
 import javafx.beans.value.ChangeListener;
@@ -35,8 +27,6 @@ public class Controller {
             System.out.println(text);
         }
     }
-    
-    
 
     @FXML
     private void initialize(){
@@ -72,9 +62,6 @@ public class Controller {
         webEngine.load(urlGoogleMaps.toExternalForm());
     }
 
-
-
-
     @FXML
     protected void handleButton1Action(ActionEvent event){
     	WebEngine webEngine = htmlGmap.getEngine();
@@ -88,6 +75,4 @@ public class Controller {
             System.out.println("Please choose spots from map");
     	}
     }
-
-
 }

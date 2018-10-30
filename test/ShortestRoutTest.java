@@ -1,33 +1,32 @@
-import static org.junit.jupiter.api.Assertions.*;
+/**
+ * @author Haoran Geng, Xijie Guo
+ */
 
-import java.util.ArrayList;
+import java.util.*;
 
-import org.junit.jupiter.api.Test;
 
-class ShortestRoutTest extends ShortestRout{
+class ShortestRoutTest {
 
-	@Test
-	void test() {
+	public void test() {
 		SpotsCollection spots = new SpotsCollection();
-		spots.size = 5;
-		spots.names.add("Columbia University");
-		spots.names.add("MOMA");
-		spots.names.add("Centrual Park");
-		spots.names.add("Empire State Building");
-		spots.names.add("SOHO");
-		System.out.println(spots.names);
-		spots.distances = new int[][] {
+		spots.setSize(5);
+		spots.addSpots("Columbia University");
+		spots.addSpots("MOMA");
+		spots.addSpots("Centrual Park");
+		spots.addSpots("Empire State Building");
+		spots.addSpots("SOHO");
+		System.out.println(spots.getNames());
+		int[][] distances = {
 			{0,10,8,7,2},
 			{10,0,9,11,19},
 			{8,9,0,4,18},
 			{7,11,4,0,27},
 			{2,19,18,27,0}
 		};
-		ArrayList<String> test = new ArrayList<String>();
-		test = FindShortest(spots);
+
+		spots.setDistances(distances);
+		List<String> test = ShortestRout.findShortest(spots);
 		System.out.println(test);
-		
-		
 	}
 
 }
