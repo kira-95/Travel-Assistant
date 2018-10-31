@@ -93,6 +93,9 @@
   <property name="project.jdk.classpath" value="jdk.classpath.1.8"/>
   
   
+  <!-- Project Libraries -->
+  
+  
   <!-- Global Libraries -->
   <!-- Register Custom Compiler Taskdefs -->
   <property name="javac2.home" value="${idea.home}/lib"/>
@@ -163,12 +166,6 @@
     </dirset>
   </path>
   
-  <path id="travel-assistant.module.test.sourcepath">
-    <dirset dir="${module.travel-assistant.basedir}">
-      <include name="test"/>
-    </dirset>
-  </path>
-  
   
   <target name="compile.module.travel-assistant" depends="compile.module.travel-assistant.production,compile.module.travel-assistant.tests" description="Compile module Travel-Assistant"/>
   
@@ -190,23 +187,7 @@
     </copy>
   </target>
   
-  <target name="compile.module.travel-assistant.tests" depends="register.custom.compilers,compile.module.travel-assistant.production" description="compile module Travel-Assistant; test classes" unless="skip.tests">
-    <mkdir dir="${travel-assistant.testoutput.dir}"/>
-    <javac2 destdir="${travel-assistant.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.travel-assistant}/javac">
-      <compilerarg line="${compiler.args.travel-assistant}"/>
-      <bootclasspath refid="travel-assistant.module.bootclasspath"/>
-      <classpath refid="travel-assistant.module.classpath"/>
-      <src refid="travel-assistant.module.test.sourcepath"/>
-      <patternset refid="excluded.from.compilation.travel-assistant"/>
-    </javac2>
-    
-    <copy todir="${travel-assistant.testoutput.dir}">
-      <fileset dir="${module.travel-assistant.basedir}/test">
-        <patternset refid="compiler.resources"/>
-        <type type="file"/>
-      </fileset>
-    </copy>
-  </target>
+  <target name="compile.module.travel-assistant.tests" depends="register.custom.compilers,compile.module.travel-assistant.production" description="compile module Travel-Assistant; test classes" unless="skip.tests"/>
   
   <target name="clean.module.travel-assistant" description="cleanup module">
     <delete dir="${travel-assistant.output.dir}"/>
