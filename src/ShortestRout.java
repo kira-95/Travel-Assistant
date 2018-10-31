@@ -38,12 +38,10 @@ public class ShortestRout {
 			i = 0;
 			min = Integer.MAX_VALUE;
 			while(i < numberOfNodes) {
-				if(distances[element][i] > 1 && visited[i] == 0) {
-					if(min > distances[element][i]) {
-						min  = distances[element][i];
-						dst = i;
-						minFlag = true;
-					}
+				if(distances[element][i] > 1 && visited[i] == 0 && min > distances[element][i]) {
+					min  = distances[element][i];
+					dst = i;
+					minFlag = true;
 				}
 				i++;
 			}

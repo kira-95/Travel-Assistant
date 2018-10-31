@@ -48,7 +48,7 @@ public class SpotsCollection {
 		return names;
 	}
 
-	public void addSpots(String name) {
+	public void addSpot(String name) {
 	    names.add(name);
     }
 
