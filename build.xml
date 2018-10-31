@@ -52,42 +52,6 @@
     <exclude name="**/?*.aj"/>
   </patternset>
   
-  <!-- JDK definitions -->
-  
-  <property name="jdk.bin.1.8" value="${jdk.home.1.8}/bin"/>
-  <path id="jdk.classpath.1.8">
-    <fileset dir="${jdk.home.1.8}">
-      <include name="jre/lib/charsets.jar"/>
-      <include name="jre/lib/deploy.jar"/>
-      <include name="jre/lib/ext/cldrdata.jar"/>
-      <include name="jre/lib/ext/dnsns.jar"/>
-      <include name="jre/lib/ext/jaccess.jar"/>
-      <include name="jre/lib/ext/jfxrt.jar"/>
-      <include name="jre/lib/ext/localedata.jar"/>
-      <include name="jre/lib/ext/nashorn.jar"/>
-      <include name="jre/lib/ext/sunec.jar"/>
-      <include name="jre/lib/ext/sunjce_provider.jar"/>
-      <include name="jre/lib/ext/sunpkcs11.jar"/>
-      <include name="jre/lib/ext/zipfs.jar"/>
-      <include name="jre/lib/javaws.jar"/>
-      <include name="jre/lib/jce.jar"/>
-      <include name="jre/lib/jfr.jar"/>
-      <include name="jre/lib/jfxswt.jar"/>
-      <include name="jre/lib/jsse.jar"/>
-      <include name="jre/lib/management-agent.jar"/>
-      <include name="jre/lib/plugin.jar"/>
-      <include name="jre/lib/resources.jar"/>
-      <include name="jre/lib/rt.jar"/>
-      <include name="lib/ant-javafx.jar"/>
-      <include name="lib/dt.jar"/>
-      <include name="lib/javafx-mx.jar"/>
-      <include name="lib/jconsole.jar"/>
-      <include name="lib/packager.jar"/>
-      <include name="lib/sa-jdi.jar"/>
-      <include name="lib/tools.jar"/>
-    </fileset>
-  </path>
-  
   <property name="project.jdk.home" value="${jdk.home.1.8}"/>
   <property name="project.jdk.bin" value="${jdk.bin.1.8}"/>
   <property name="project.jdk.classpath" value="jdk.classpath.1.8"/>
@@ -120,36 +84,26 @@
   <dirname property="module.travel-assistant.basedir" file="${ant.file}"/>
   
   
-  <property name="module.jdk.home.travel-assistant" value="${project.jdk.home}"/>
-  <property name="module.jdk.bin.travel-assistant" value="${project.jdk.bin}"/>
-  <property name="module.jdk.classpath.travel-assistant" value="${project.jdk.classpath}"/>
+  <property name="module.jdk.home.travel-assistant" value=""/>
+  <property name="module.jdk.bin.travel-assistant" value=""/>
+  <property name="module.jdk.classpath.travel-assistant" value=""/>
   
   <property name="compiler.args.travel-assistant" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
   
-  <property name="travel-assistant.output.dir" value="${module.travel-assistant.basedir}/out/production/Travel-Assistant"/>
-  <property name="travel-assistant.testoutput.dir" value="${module.travel-assistant.basedir}/out/test/Travel-Assistant"/>
+  <property name="travel-assistant.output.dir" value="undefined"/>
+  <property name="travel-assistant.testoutput.dir" value="undefined"/>
   
   <path id="travel-assistant.module.bootclasspath">
     <!-- Paths to be included in compilation bootclasspath -->
   </path>
   
-  <path id="travel-assistant.module.production.classpath">
-    <path refid="${module.jdk.classpath.travel-assistant}"/>
-  </path>
+  <path id="travel-assistant.module.production.classpath"/>
   
-  <path id="travel-assistant.runtime.production.module.classpath">
-    <pathelement location="${travel-assistant.output.dir}"/>
-  </path>
+  <path id="travel-assistant.runtime.production.module.classpath"/>
   
-  <path id="travel-assistant.module.classpath">
-    <path refid="${module.jdk.classpath.travel-assistant}"/>
-    <pathelement location="${travel-assistant.output.dir}"/>
-  </path>
+  <path id="travel-assistant.module.classpath"/>
   
-  <path id="travel-assistant.runtime.module.classpath">
-    <pathelement location="${travel-assistant.testoutput.dir}"/>
-    <pathelement location="${travel-assistant.output.dir}"/>
-  </path>
+  <path id="travel-assistant.runtime.module.classpath"/>
   
   
   <patternset id="excluded.from.module.travel-assistant">
@@ -160,32 +114,10 @@
     <patternset refid="excluded.from.module.travel-assistant"/>
   </patternset>
   
-  <path id="travel-assistant.module.sourcepath">
-    <dirset dir="${module.travel-assistant.basedir}">
-      <include name="src"/>
-    </dirset>
-  </path>
-  
   
   <target name="compile.module.travel-assistant" depends="compile.module.travel-assistant.production,compile.module.travel-assistant.tests" description="Compile module Travel-Assistant"/>
   
-  <target name="compile.module.travel-assistant.production" depends="register.custom.compilers" description="Compile module Travel-Assistant; production classes">
-    <mkdir dir="${travel-assistant.output.dir}"/>
-    <javac2 destdir="${travel-assistant.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.travel-assistant}/javac">
-      <compilerarg line="${compiler.args.travel-assistant}"/>
-      <bootclasspath refid="travel-assistant.module.bootclasspath"/>
-      <classpath refid="travel-assistant.module.production.classpath"/>
-      <src refid="travel-assistant.module.sourcepath"/>
-      <patternset refid="excluded.from.compilation.travel-assistant"/>
-    </javac2>
-    
-    <copy todir="${travel-assistant.output.dir}">
-      <fileset dir="${module.travel-assistant.basedir}/src">
-        <patternset refid="compiler.resources"/>
-        <type type="file"/>
-      </fileset>
-    </copy>
-  </target>
+  <target name="compile.module.travel-assistant.production" depends="register.custom.compilers" description="Compile module Travel-Assistant; production classes"/>
   
   <target name="compile.module.travel-assistant.tests" depends="register.custom.compilers,compile.module.travel-assistant.production" description="compile module Travel-Assistant; test classes" unless="skip.tests"/>
   
