@@ -22,7 +22,7 @@ public class ShortestRouteTest {
         spots.addSpot("Empire State Building");
         spots.addSpot("SOHO");
 
-        int[][] distances = {
+        int[][] distanceMatrix = {
                 {0,10,8,7,2},
                 {10,0,9,11,19},
                 {8,9,0,4,18},
@@ -30,10 +30,7 @@ public class ShortestRouteTest {
                 {2,19,18,27,0}
         };
 
-        spots.setDistances(distances);
-
-        List<String> res = ShortestRout.findShortest(spots);
-        System.out.println(res);
+        spots.setDistances(distanceMatrix);
     }
 
     /**
@@ -53,6 +50,11 @@ public class ShortestRouteTest {
      */
     @Test
     public void testShortestRoute() {
-
+        List<String> res = ShortestRout.findShortest(spots);
+        assertEquals(res.get(0), "Columbia University");
+        assertEquals(res.get(1), "SOHO");
+        assertEquals(res.get(2), "Central Park");
+        assertEquals(res.get(3), "Empire State Building");
+        assertEquals(res.get(4), "MOMA");
     }
 }
