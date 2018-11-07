@@ -51,7 +51,6 @@ fi
 # exec git diff-index --check --cached $against --
 
 # generate static analysis report
-# run by coverage
 warning=$(./scripts/run_analysis.sh)
 if [ "$warning" = "1" ]; then
 	echo "Static analysis returns warnings. Please check the latest log for details."
@@ -67,6 +66,15 @@ if [ "$compile" = "1" ]; then
 	exit 1
 else
 	echo "Build test passed."
+fi
+
+unit_test=$(./scripts/run_unit_tests.sh)
+if [ "$unit_test" = "1" ]; then
+	echo "$unit_test"
+	echo "Unit tests failed. Please check your source code."
+	exit 1
+else
+	echo "Unit tests passed."
 fi
 
 echo "Finish Pre-Commmit. Committing."
