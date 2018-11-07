@@ -51,6 +51,7 @@ fi
 # exec git diff-index --check --cached $against --
 
 # generate static analysis report
+# run by coverage
 warning=$(./scripts/run_analysis.sh)
 if [ "$warning" = "1" ]; then
 	echo "Static analysis returns warnings. Please check the latest log for details."
