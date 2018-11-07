@@ -1,26 +1,14 @@
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
-import javafx.scene.Scene;
 import java.net.URL;
-import javafx.stage.Stage;
 import java.util.*;
-import jdk.nashorn.internal.objects.Global;
-import netscape.javascript.JSObject;
-import javafx.concurrent.Worker.State;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 
 public class Controller {
 
-
-    public List<String> spotList = new ArrayList<String>();
-
+    private SpotsCollection sc = new SpotsCollection();
 
     @FXML
     private Button button1;
@@ -48,10 +36,7 @@ public class Controller {
     protected void handleButton1Action(ActionEvent event){
     	WebEngine webEngine = htmlGmap.getEngine();
     	String spotInfo = (String) webEngine.executeScript("document.getElementById('status').innerHTML");
-    	spotList.add(spotInfo);
-
-
-
+    	sc.addSpot(spotInfo);
 
     	System.out.println(spotInfo);
 
@@ -67,12 +52,18 @@ public class Controller {
     @FXML
     protected void handleButtonGenerateTripPlan(ActionEvent event){
         try{
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("TripPlanResult.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setTitle("Trip Plan");
-            stage.setScene(new Scene(root1));
-            stage.show();
+            sc.setNumSpots(sc.getSpots().size());
+            sc.saveDistancesToMatrix();
+            System.out.println(sc.getDistanceMatrix().length);
+            List<String> spotList = ShortestRoute.findNearestNeighbor(sc);
+
+            list.getItems().addAll(spotList);
+            //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("TripPlanResult.fxml"));
+            //Parent root1 = (Parent) fxmlLoader.load();
+            //Stage stage = new Stage();
+            //stage.setTitle("Trip Plan");
+            //stage.setScene(new Scene(root1));
+            //stage.show();
 
         }catch (Exception e){
             System.out.println("Can not load new page");

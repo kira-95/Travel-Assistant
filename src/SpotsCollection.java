@@ -28,7 +28,6 @@ public class SpotsCollection {
 
 	public SpotsCollection() {
 		spots = new ArrayList<Spot>();
-		distanceMatrix = new double[numSpots][numSpots];
 	}
 
 	public List<Spot> getSpots() {
@@ -39,7 +38,7 @@ public class SpotsCollection {
 		return numSpots;
 	}
 
-	public void setNumSpots(int numSpots) {
+	public void setNumSpots(int numSpots){
 		this.numSpots = numSpots;
 	}
 
@@ -56,6 +55,7 @@ public class SpotsCollection {
 	}
 
 	public void saveDistancesToMatrix() throws Exception {
+		distanceMatrix = new double[numSpots][numSpots];
 		for(int i = 0; i < numSpots; i++) {
 			for(int j = 0;j < numSpots; j++) {
 				if(i == j)
