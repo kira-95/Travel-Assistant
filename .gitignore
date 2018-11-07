@@ -1,2 +1,3 @@
 .idea/
 src/*.class
+.DS_Store
