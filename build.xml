@@ -8,7 +8,17 @@
 	<path id="classpath.test">
 	    <pathelement location="libs/junit-4.12.jar"/>
 	    <pathelement location="libs/hamcrest-core-1.3.jar"/>
-	    <pathelement location="${build.dir}"/>
+	    <pathelement location="${test.build.dir}"/>
+  	</path>
+
+  	<path id="classpath.main">
+	    <pathelement location="libs/annotations-13.0.jar"/>
+	    <pathelement location="libs/kotlin-stdlib-1.3.0.jar"/>
+	    <pathelement location="libs/kotlin-stdlib-common-1.3.0.jar"/>
+	    <pathelement location="libs/okhttp-2.5.0.jar"/>
+	    <pathelement location="libs/okio-2.1.0.jar"/>
+	    <pathelement location="libs/gson-2.5.jar"/>
+	    <pathelement location="${main.build.dir}"/>
   	</path>
 
 	<target name = "info">
@@ -18,9 +28,10 @@
 	<target name = "compile" description = "Compile main GUI java files">
 		<!-- <mkdir dir = "${build.dir}"/> -->
 		<javac srcdir="${main.src.dir}" destdir = "${main.build.dir}" source = "1.8" target = "1.8" debug = "true" deprecation = "false" optimize = "false" failonerror = "true" includeantruntime="false">
+			<classpath refid="classpath.main"/>
 			<!-- <src path = "${main.src.dir}"/> -->
-			<include name="Main.java"/>
-			<include name="Controller.java"/>
+			<!-- <include name="Main.java"/>
+			<include name="Controller.java"/> -->
     		<!-- <exclude name="**/Example.java"/> -->
 			<!-- <classpath refid = "master-classpath"/> -->
 		</javac>

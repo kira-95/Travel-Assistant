@@ -20,7 +20,8 @@ public class ShortestRouteTest {
         spots.addSpot("MOMA");
         spots.addSpot("Central Park");
         spots.addSpot("Empire State Building");
-        spots.addSpot("Metropolian Museum");
+        spots.addSpot("SOHO");
+
         int[][] distanceMatrix = {
                 {0,10,8,7,2},
                 {10,0,9,11,19},
@@ -29,9 +30,7 @@ public class ShortestRouteTest {
                 {2,19,18,27,0}
         };
 
-        spots.setDistances();
-        
-    
+        spots.setDistances(distanceMatrix);
     }
 
     /**

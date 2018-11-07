@@ -4,10 +4,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.squareup.okhttp.*;
 
-import scala.tools.nsc.doc.html.page.JSONArray;
-import scala.tools.nsc.doc.html.page.JSONObject;
-
-import org.mozilla.javascript.json.*;
 import java.io.IOException;
 
 public class GoogMatrixRequest {
