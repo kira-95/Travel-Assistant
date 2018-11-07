@@ -11,7 +11,7 @@ import java.util.Stack;
 public class ShortestRout {
 
 	public static List<String> findShortest(SpotsCollection spots) {
-		int [][] distances = spots.getDistances();
+		double [][] distances = spots.getDistances();
 		List<String> names = spots.getNames();
 		int numberOfNodes = spots.getSize();
 
@@ -19,7 +19,8 @@ public class ShortestRout {
 		Stack<String> stack = new Stack<String>();
 		int[] visited = new int[numberOfNodes + 1];
 		visited[0]= 1;
-		int element, dst = 0, i = 0, min = Integer.MAX_VALUE;
+		int element, dst = 0, i = 0;
+		double min = Double.MAX_VALUE;
 		boolean minFlag = false;
 
 		stack.push(names.get(0));
