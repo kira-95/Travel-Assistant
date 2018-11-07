@@ -13,12 +13,13 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
                   <Button fx:id="button1" mnemonicParsing="false" onAction="#handleButton1Action" text="Add Location" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="15.0" />
-                  <ListView fx:id="list" AnchorPane.topAnchor="200.0" />
+                  <ListView fx:id="list" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="200.0" />
+                  <Button fx:id="buttongenarate" layoutX="81.0" layoutY="148.0" mnemonicParsing="false" onAction="#handleButtonGenerateTripPlan" text="Genarate Trip Plan" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <WebView fx:id="htmlGmap" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <WebView fx:id="htmlGmap" prefHeight="598.0" prefWidth="556.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
         </items>

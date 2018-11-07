@@ -1,5 +1,5 @@
-import java.io.IOException;
-import java.util.*;
+import java.util.List;
+import java.util.ArrayList;
 
 
 /**
@@ -21,50 +21,48 @@ import java.util.*;
  *In the example graph: the disterence between each spots are:
  *A-B:1,A-C:2,A-D:3,B-C:4,B-D:6,C-D:7
  */
-public class SpotsCollection extends GoogMatrixRequest{
-	private List<String> names;
-	private int size;
-	private double[][] distances;
-	
-	
+public class SpotsCollection {
+	private List<Spot> spots;
+	private int numSpots;
+	private double[][] distanceMatrix;
+
 	public SpotsCollection() {
-		names = new ArrayList<String>();
-		size = 0;
-		distances = new double[size][size];
+		spots = new ArrayList<Spot>();
+		distanceMatrix = new double[numSpots][numSpots];
 	}
 
-	public int getSize() {
-		return size;
+	public List<Spot> getSpots() {
+		return spots;
 	}
 
-	public void setSize(int size) {
-		this.size = size;
-		this.distances = new double[this.size][this.size];
+	public int getNumSpots() {
+		return numSpots;
 	}
 
-	public double[][] getDistances() {
-		return distances;
+	public void setNumSpots(int numSpots) {
+		this.numSpots = numSpots;
 	}
 
-	public List<String> getNames() {
-		return names;
+	public double[][] getDistanceMatrix() {
+		return distanceMatrix;
 	}
 
 	public void addSpot(String name) {
-	    names.add(name);
+	    spots.add(new Spot(name));
     }
 
-    public void setDistances() throws IOException {
-    	System.out.println(this.distances.length);
-		for(int i=0;i<this.size;i++) {
-			for(int j=0;j<this.size;j++) {
-				if(i==j) {
-					this.distances[i][j] = 0;
-				}else {
-					this.distances[i][j]=Distance(this.names.get(i),this.names.get(j));
-				}
+    public void setDistanceMatrix(double[][] distanceMatrix) {
+		this.distanceMatrix = distanceMatrix;
+	}
+
+	public void saveDistancesToMatrix() throws Exception {
+		for(int i = 0; i < numSpots; i++) {
+			for(int j = 0;j < numSpots; j++) {
+				if(i == j)
+					distanceMatrix[i][j] = 0.0;
+				else
+					distanceMatrix[i][j]= GoogleMapsHandler.Distance(spots.get(i).getName(), spots.get(j).getName());
 			}
 		}
-//		this.distances = distances;
 	}
 }

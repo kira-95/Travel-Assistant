@@ -5,32 +5,32 @@ import java.util.*;
 import static org.junit.Assert.*;
 
 /**
- * Junit test for back-end
+ * Junit test for back end
  * @Author: Xijie Guo
  */
 public class ShortestRouteTest {
 
     private SpotsCollection spots = new SpotsCollection();
-    private List<String> spotNameList = spots.getNames();
+    private List<Spot> spotList = spots.getSpots();
 
     @Before
     public void setUp() throws Exception {
-        spots.setSize(5);
+        spots.setNumSpots(5);
         spots.addSpot("Columbia University");
         spots.addSpot("MOMA");
         spots.addSpot("Central Park");
         spots.addSpot("Empire State Building");
         spots.addSpot("SOHO");
 
-        int[][] distanceMatrix = {
-                {0,10,8,7,2},
-                {10,0,9,11,19},
-                {8,9,0,4,18},
-                {7,11,4,0,27},
-                {2,19,18,27,0}
+        double[][] distanceMatrix = {
+                {0.0, 10.0, 8.0, 7.0, 2.0},
+                {10.0, 0.0, 9.0, 11.0, 19.0},
+                {8.0, 9.0, 0.0, 4.0, 18.0},
+                {7.0, 11.0, 4.0, 0.0, 27.0},
+                {2.0, 19.0, 18.0, 27.0, 0.0}
         };
 
-        spots.setDistances(distanceMatrix);
+        spots.setDistanceMatrix(distanceMatrix);
     }
 
     /**
@@ -38,11 +38,11 @@ public class ShortestRouteTest {
      */
     @Test
     public void testSpotAdd() {
-        assertTrue(spotNameList.get(0).equals("Columbia University"));
-        assertTrue(spotNameList.get(1).equals("MOMA"));
-        assertTrue(spotNameList.get(2).equals("Central Park"));
-        assertTrue(spotNameList.get(3).equals("Empire State Building"));
-        assertTrue(spotNameList.get(4).equals("SOHO"));
+        assertTrue(spotList.get(0).getName().equals("Columbia University"));
+        assertTrue(spotList.get(1).getName().equals("MOMA"));
+        assertTrue(spotList.get(2).getName().equals("Central Park"));
+        assertTrue(spotList.get(3).getName().equals("Empire State Building"));
+        assertTrue(spotList.get(4).getName().equals("SOHO"));
     }
 
     /**
@@ -50,7 +50,7 @@ public class ShortestRouteTest {
      */
     @Test
     public void testShortestRoute() {
-        List<String> res = ShortestRout.findShortest(spots);
+        List<String> res = ShortestRoute.findNearestNeighbor(spots);
         assertEquals(res.get(0), "Columbia University");
         assertEquals(res.get(1), "SOHO");
         assertEquals(res.get(2), "Central Park");
