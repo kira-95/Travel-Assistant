@@ -48,16 +48,11 @@ public class Controller {
                 System.out.println("Repeated Location!");
                 text.setText("Repeated Location!");
             }
-
-
         }
         else {
             System.out.println("No Spot Information Found!");
             text.setText("No Spot Information Found!");
         }
-
-
-
     }
 
     @FXML
@@ -70,12 +65,7 @@ public class Controller {
             sc.deleteSpot();
             listCompare.remove(listCompare.size()-1);
             list.getItems().remove(list.getItems().size()-1);
-
-
         }
-
-
-
     }
 
     @FXML
@@ -91,12 +81,6 @@ public class Controller {
 
             list.getItems().addAll(spotList);
             text.setText("Success!");
-            //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("TripPlanResult.fxml"));
-            //Parent root1 = (Parent) fxmlLoader.load();
-            //Stage stage = new Stage();
-            //stage.setTitle("Trip Plan");
-            //stage.setScene(new Scene(root1));
-            //stage.show();
 
         }catch (Exception e){
 

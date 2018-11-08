@@ -14,8 +14,6 @@ import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit.ApplicationTest;
 import static org.testfx.matcher.control.LabeledMatchers.hasText;
 
-
-
 public class MainUITest extends ApplicationTest {
     private SpotsCollection sc = new SpotsCollection();
     private List<String> listCompare = new ArrayList<String>();
@@ -45,8 +43,6 @@ public class MainUITest extends ApplicationTest {
         release(new MouseButton[]{});
     }
 
-
-
     /**
      * test button: add location
      * since testfx can not test the content of javascript, we can not get value from webview
@@ -56,9 +52,6 @@ public class MainUITest extends ApplicationTest {
     public void testAddLocation () {
         clickOn("#button1");
         verifyThat("#text", hasText("No Spot Information Found!"));
-
-
-
     }
 
     /**
@@ -68,8 +61,6 @@ public class MainUITest extends ApplicationTest {
     public void testDeleteLocation(){
         clickOn("#delete");
         verifyThat("#text", hasText("Spot List is Already Empty!"));
-
-
     }
 
     /**
@@ -80,7 +71,6 @@ public class MainUITest extends ApplicationTest {
         clickOn("#buttonGenerate");
         verifyThat("#text", hasText("Can not generate the route!"));
     }
-
 
 }
 
