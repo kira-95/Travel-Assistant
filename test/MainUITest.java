@@ -29,7 +29,6 @@ public class MainUITest extends ApplicationTest {
         primaryStage.setTitle("TravelAssistant");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-
     }
 
     @Before
@@ -45,7 +44,7 @@ public class MainUITest extends ApplicationTest {
 
     /**
      * test button: add location
-     * since testfx can not test the content of javascript, we can not get value from webview
+     * since testfix can not test the content of javascript, we can not get value from webview
      * the result show be "No Spot Information Found!"
      */
     @Test
