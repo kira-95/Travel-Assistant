@@ -6,7 +6,7 @@ import javafx.scene.web.WebView;
 import java.net.URL;
 import java.util.*;
 
-public class Controller {
+public class UIController {
 
     private SpotsCollection sc = new SpotsCollection();
     private List<String> listCompare = new ArrayList<String>();

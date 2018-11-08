@@ -12,10 +12,6 @@ public class Main extends Application {
     //MyBrowser myBrowser;
     private WebView htmlGmap;
 
-
-
-
-
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("layout.fxml"));

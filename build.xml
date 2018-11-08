@@ -33,7 +33,7 @@
 
 			<!-- <src path = "${main.src.dir}"/> -->
 			<!-- <include name="Main.java"/>
-			<include name="Controller.java"/> -->
+			<include name="UIController.java"/> -->
     		<!-- <exclude name="**/Example.java"/> -->
 			<!-- <classpath refid = "master-classpath"/> -->
 		</javac>
@@ -44,7 +44,7 @@
 		<javac srcdir="${test.src.dir}" destdir="${test.build.dir}" source = "1.8" target = "1.8" debug = "true" deprecation = "false" optimize = "false" failonerror = "true" includeantruntime="false">
 	    	<classpath refid="classpath.test"/>
 	    	<!-- <include name="Main.java"/>
-			<include name="Controller.java"/> -->
+			<include name="UIController.java"/> -->
 		</javac>
 	</target>
 

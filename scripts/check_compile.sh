@@ -1,4 +1,4 @@
-#success=$( javac -d ./bin/temp ./src/Main.java ./src/Controller.java )
+#success=$( javac -d ./bin/temp ./src/Main.java ./src/UIController.java )
 # remove build files
 # rm ./bin/temp/*.class
 
