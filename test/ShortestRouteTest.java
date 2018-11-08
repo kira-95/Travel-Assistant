@@ -33,17 +33,6 @@ public class ShortestRouteTest {
         spots.setDistanceMatrix(distanceMatrix);
     }
 
-    /**
-     * Test if the spots can be added correctly
-     */
-    @Test
-    public void testSpotAdd() {
-        assertTrue(spotList.get(0).getName().equals("Columbia University"));
-        assertTrue(spotList.get(1).getName().equals("MOMA"));
-        assertTrue(spotList.get(2).getName().equals("Central Park"));
-        assertTrue(spotList.get(3).getName().equals("Empire State Building"));
-        assertTrue(spotList.get(4).getName().equals("SOHO"));
-    }
 
     /**
      * Test if the algorithm can find the shortest path

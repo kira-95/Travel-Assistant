@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 /**
- * @author Xijie Guo, Haoran Geng
+ * @author Haoran Geng, Xijie Guo
  * 
  * Each time finding the min path along the nodes
  * store the nodes into the stack
@@ -27,14 +27,6 @@ public class ShortestRoute {
 		stack.push(spots.get(0).getName());
 		result.add(spots.get(0).getName());
 
-		for(int k = 1; k < numberOfNodes - 1; k++) {
-			for(int j = 1; j <= numberOfNodes - 1; j++) {
-				if(distances[k][j] == 1 && distances[j][k] == 0) {
-					distances[j][k] = 1;
-				}
-			}
-		}
-		
 		while(!stack.isEmpty()) {
 
 			String name = stack.peek();
@@ -66,13 +58,4 @@ public class ShortestRoute {
 		return result;
 	}
 
-	/**
-	 * Calculate a shortest path among those spots in a brute force but the most optimal way
-	 * due to the number of spots
-	 */
-	public static List<String> findShortestPath(SpotsCollection sc) {
-		List<Spot> spots = sc.getSpots();
-		List<String> res = new ArrayList<String>();
-		return res;
-	}
 }

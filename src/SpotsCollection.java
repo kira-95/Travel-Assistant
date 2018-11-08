@@ -28,6 +28,7 @@ public class SpotsCollection {
 
 	public SpotsCollection() {
 		spots = new ArrayList<Spot>();
+		numSpots = 0;
 	}
 
 	public List<Spot> getSpots() {
@@ -48,10 +49,12 @@ public class SpotsCollection {
 
 	public void addSpot(String name) {
 	    spots.add(new Spot(name));
+	    numSpots++;
     }
 
     public void deleteSpot() {
         spots.remove(spots.size()-1);
+		numSpots--;
     }
 
     public void setDistanceMatrix(double[][] distanceMatrix) {

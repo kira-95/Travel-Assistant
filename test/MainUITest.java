@@ -6,7 +6,6 @@ import javafx.scene.control.*;
 import static org.testfx.api.FxAssert.*;
 import java.util.*;
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
@@ -29,10 +28,6 @@ public class MainUITest extends ApplicationTest {
         primaryStage.setTitle("TravelAssistant");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-    }
-
-    @Before
-    public void setUp () throws Exception {
     }
 
     @After
