@@ -50,6 +50,10 @@ public class SpotsCollection {
 	    spots.add(new Spot(name));
     }
 
+    public void deleteSpot() {
+        spots.remove(spots.size()-1);
+    }
+
     public void setDistanceMatrix(double[][] distanceMatrix) {
 		this.distanceMatrix = distanceMatrix;
 	}
