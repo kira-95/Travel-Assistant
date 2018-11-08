@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,9 +13,10 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
+                  <Label fx:id="text" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="470.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0" />
                   <Button fx:id="button1" layoutX="23.0" mnemonicParsing="false" onAction="#handleButton1Action" prefHeight="27.0" prefWidth="109.0" text="Add Location" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="102.0" AnchorPane.topAnchor="15.0" />
                   <ListView fx:id="list" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="200.0" />
-                  <Button fx:id="buttongenarate" layoutX="81.0" layoutY="148.0" mnemonicParsing="false" onAction="#handleButtonGenerateTripPlan" text="Genarate Trip Plan" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
+                  <Button fx:id="buttonGenerate" layoutX="81.0" layoutY="148.0" mnemonicParsing="false" onAction="#handleButtonGenerateTripPlan" text="Generate Trip Plan" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
                   <Button fx:id="delete" layoutX="146.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleDeleteAction" text="Delete" />
                </children>
             </AnchorPane>

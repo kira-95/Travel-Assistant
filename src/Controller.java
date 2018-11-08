@@ -9,25 +9,24 @@ import java.util.*;
 public class Controller {
 
     private SpotsCollection sc = new SpotsCollection();
-    List<String> listCompare = new ArrayList<String>();
+    private List<String> listCompare = new ArrayList<String>();
 
     @FXML
     private Button button1;
 
     @FXML
+    private Label text = new Label();
     private Button buttongenarate;
 
     @FXML
     private WebView htmlGmap;
 
+
     @FXML
     private ListView<String> list;
 
-
-
-
     @FXML
-    private void initialize(){
+    protected void initialize(){
         WebEngine webEngine = htmlGmap.getEngine();
         URL urlGoogleMaps = getClass().getResource("search.html");
         webEngine.load(urlGoogleMaps.toExternalForm());
@@ -37,38 +36,41 @@ public class Controller {
     protected void handleButton1Action(ActionEvent event){
     	WebEngine webEngine = htmlGmap.getEngine();
     	String spotInfo = (String) webEngine.executeScript("document.getElementById('status').innerHTML");
-    	//sc.addSpot(spotInfo);
 
-
-
-
-    	
-    	if (!spotInfo.equals("")) {
+        if (!spotInfo.equals("")) {
             if (!listCompare.contains(spotInfo)){
                 sc.addSpot(spotInfo);
                 listCompare.add(spotInfo);
                 list.getItems().add(spotInfo);
+                System.out.println(listCompare);
             }
             else{
                 System.out.println("Repeated Location!");
+                text.setText("Repeated Location!");
             }
 
 
-    	}
-    	else {
+        }
+        else {
             System.out.println("No Spot Information Found!");
-    	}
+            text.setText("No Spot Information Found!");
+        }
+
+
+
     }
 
     @FXML
     protected void handleDeleteAction(ActionEvent event){
         if (listCompare.isEmpty()){
-            System.out.println("Already Empty!");
+            System.out.println("Spot List is Already Empty!");
+            text.setText("Spot List is Already Empty!");
         }
         else{
             sc.deleteSpot();
             listCompare.remove(listCompare.size()-1);
             list.getItems().remove(list.getItems().size()-1);
+
 
         }
 
@@ -78,15 +80,17 @@ public class Controller {
 
     @FXML
     protected void handleButtonGenerateTripPlan(ActionEvent event){
+        text.setText("Loading...");
+        list.getItems().clear();
+
         try{
-            list.getItems().clear();
-            list.getItems().add("Loading...");
             sc.setNumSpots(sc.getSpots().size());
             sc.saveDistancesToMatrix();
 
             List<String> spotList = ShortestRoute.findNearestNeighbor(sc);
-            list.getItems().clear();
+
             list.getItems().addAll(spotList);
+            text.setText("Success!");
             //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("TripPlanResult.fxml"));
             //Parent root1 = (Parent) fxmlLoader.load();
             //Stage stage = new Stage();
@@ -95,8 +99,9 @@ public class Controller {
             //stage.show();
 
         }catch (Exception e){
-            list.getItems().clear();
-            System.out.println("Can not build the route!");
+
+            System.out.println("Can not generate the route!");
+            text.setText("Can not generate the route!");
         }
 
     }
