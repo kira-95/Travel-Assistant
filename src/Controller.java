@@ -9,6 +9,7 @@ import java.util.*;
 public class Controller {
 
     private SpotsCollection sc = new SpotsCollection();
+    List<String> listCompare = new ArrayList<String>();
 
     @FXML
     private Button button1;
@@ -36,27 +37,55 @@ public class Controller {
     protected void handleButton1Action(ActionEvent event){
     	WebEngine webEngine = htmlGmap.getEngine();
     	String spotInfo = (String) webEngine.executeScript("document.getElementById('status').innerHTML");
-    	sc.addSpot(spotInfo);
+    	//sc.addSpot(spotInfo);
 
-    	System.out.println(spotInfo);
+
+
 
     	
     	if (!spotInfo.equals("")) {
-        	list.getItems().add(spotInfo);
+            if (!listCompare.contains(spotInfo)){
+                sc.addSpot(spotInfo);
+                listCompare.add(spotInfo);
+                list.getItems().add(spotInfo);
+            }
+            else{
+                System.out.println("Repeated Location!");
+            }
+
+
     	}
     	else {
-            System.out.println("Please choose spots from map");
+            System.out.println("No Spot Information Found!");
     	}
+    }
+
+    @FXML
+    protected void handleDeleteAction(ActionEvent event){
+        if (listCompare.isEmpty()){
+            System.out.println("Already Empty!");
+        }
+        else{
+            sc.deleteSpot();
+            listCompare.remove(listCompare.size()-1);
+            list.getItems().remove(list.getItems().size()-1);
+
+        }
+
+
+
     }
 
     @FXML
     protected void handleButtonGenerateTripPlan(ActionEvent event){
         try{
+            list.getItems().clear();
+            list.getItems().add("Loading...");
             sc.setNumSpots(sc.getSpots().size());
             sc.saveDistancesToMatrix();
-            System.out.println(sc.getDistanceMatrix().length);
-            List<String> spotList = ShortestRoute.findNearestNeighbor(sc);
 
+            List<String> spotList = ShortestRoute.findNearestNeighbor(sc);
+            list.getItems().clear();
             list.getItems().addAll(spotList);
             //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("TripPlanResult.fxml"));
             //Parent root1 = (Parent) fxmlLoader.load();
@@ -66,7 +95,8 @@ public class Controller {
             //stage.show();
 
         }catch (Exception e){
-            System.out.println("Can not load new page");
+            list.getItems().clear();
+            System.out.println("Can not build the route!");
         }
 
     }
